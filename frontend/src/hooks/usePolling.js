@@ -1,10 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-/**
- * Custom hook koj periodichno (na sekoi intervalMs) povtorno povikuva
- * fetchFunction i go vrakja rezultatot. Se koristi za "live" azhuriranje
- * na podatocite bez websocket - obichen polling.
- */
+
 export function usePolling(fetchFunction, intervalMs = 3000) {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
@@ -23,11 +19,11 @@ export function usePolling(fetchFunction, intervalMs = 3000) {
     }, [fetchFunction]);
 
     useEffect(() => {
-        load(); // prv povik veднаш, ne chekaj go prviot interval
+        load();
 
         const intervalId = setInterval(load, intervalMs);
 
-        return () => clearInterval(intervalId); // cistenje koga komponentata se demontira
+        return () => clearInterval(intervalId);
     }, [load, intervalMs]);
 
     return { data, error, loading, refetch: load };

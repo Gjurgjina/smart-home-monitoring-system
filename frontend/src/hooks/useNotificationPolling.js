@@ -31,7 +31,7 @@ export function useNotificationPolling(intervalMs = 4000) {
             setUnreadCount(newCount);
             setNotifications(allNotifications);
         } catch {
-            // Backend nedostapen - tivko preskoknuvame ovoj ciklus
+
         }
     }, []);
 

@@ -66,11 +66,9 @@ public class SensorEventListener {
     }
 
     private void createNotifications(Alert alert) {
-        // 1. Notifikacija do stanarot na konkretniot stan
         apartmentRepository.findByApartmentId(alert.getApartmentId())
                 .ifPresent(apartment -> saveNotification(alert, apartment.getOwnerUsername()));
 
-        // 2. Notifikacija do site ADMIN korisnici
         List<User> admins = userRepository.findAll().stream()
                 .filter(u -> u.getRole() == Role.ADMIN)
                 .toList();

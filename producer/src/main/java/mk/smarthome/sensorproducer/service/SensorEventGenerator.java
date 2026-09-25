@@ -29,12 +29,10 @@ public class SensorEventGenerator {
     @Value("${sensor.danger-probability}")
     private double dangerProbability;
 
-    // Sobi vnatre vo eden stan
     private static final List<String> ROOMS = List.of(
             "kitchen", "living-room", "bedroom", "bathroom"
     );
 
-    // 8 stanovi vo zgradata (apartmentId, broj na stan, kat)
     private static final List<ApartmentInfo> APARTMENTS = List.of(
             new ApartmentInfo("apt-1", "1", 1),
             new ApartmentInfo("apt-2", "2", 1),

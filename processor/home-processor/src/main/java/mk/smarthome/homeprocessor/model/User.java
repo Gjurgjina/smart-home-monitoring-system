@@ -18,8 +18,8 @@ public class User {
     private String id;
 
     private String username;
-    private String password; // hashed, ne plain text
+    private String password;
     private Role role;
-    private String apartmentId; // null za ADMIN
+    private String apartmentId;
 
 }

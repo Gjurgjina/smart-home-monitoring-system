@@ -1,0 +1,21 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: sensor-producer
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+
+sensor:
+  topic: sensor-events
+  interval-ms: 3000
+  danger-probability: 0.15
+
+logging:
+  level:
+    mk.smarthome: INFO
+    org.apache.kafka: WARN

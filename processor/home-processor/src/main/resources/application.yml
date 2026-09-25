@@ -1,0 +1,36 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: home-processor
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: home-processor-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: mk.smarthome.homeprocessor.model.SensorEvent
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+  mongodb:
+    uri: mongodb://admin:admin123@localhost:27017/smarthome?authSource=admin
+
+sensor:
+  input-topic: sensor-events
+  alert-topic: alerts
+
+jwt:
+  secret: smart-home-monitoring-super-secret-key-for-jwt-signing-2026-change-me
+  expiration-ms: 86400000
+
+logging:
+  level:
+    mk.smarthome: INFO
+    org.apache.kafka: WARN
+    org.mongodb: WARN
